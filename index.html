@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Parágrafos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to bottom, royalblue, white);
+            color: #fff;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        #content {
+            border: 2px solid #fff;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 8px;
+            min-height: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        input {
+            width: 60%;
+        }
+        button {
+            background-color: royalblue;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #4169e1;
+            transform: scale(1.05);
+        }
+        button:active {
+            background-color: #27408b;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciar Parágrafos</h1>
+    <input type="text" id="inputText" placeholder="Digite algo">
+    <button id="addButton">Adicionar Parágrafo</button>
+    <button id="countButton">Contar Linhas</button>
+    <button id="deleteButton">Deletar Linhas</button>
+    
+    <div id="content"></div>
+
+    <script>
+        const input = document.getElementById('inputText');
+        const addButton = document.getElementById('addButton');
+        const countButton = document.getElementById('countButton');
+        const deleteButton = document.getElementById('deleteButton');
+        const contentDiv = document.getElementById('content');
+        
+        // Adicionar parágrafo à div
+        addButton.addEventListener('click', () => {
+            const text = input.value.trim();
+            if (text) {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = text;
+                contentDiv.appendChild(paragraph);
+                input.value = ''; // Limpa o campo de entrada
+            } else {
+                alert('Por favor, digite algo antes de adicionar.');
+            }
+        });
+        
+        // Contar o número de linhas adicionadas
+        countButton.addEventListener('click', () => {
+            const paragraphCount = contentDiv.getElementsByTagName('p').length;
+            alert(`${paragraphCount} linha(s) foram adicionada(s).`);
+        });
+
+        // Deletar todas as linhas
+        deleteButton.addEventListener('click', () => {
+            contentDiv.innerHTML = ''; // Remove todo o conteúdo da div
+            alert('Todas as linhas foram deletadas.');
+        });
+    </script>
+</body>
+</html>
